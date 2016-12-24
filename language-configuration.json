@@ -1,0 +1,47 @@
+{
+    "comments": {
+        // symbol used for single line comment. Remove this entry if your language does not support line comments
+        "lineComment": "'"
+    },
+    // symbols used as brackets
+    "brackets": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["<<%str%", "%str%"],
+        ["<<%txt%", "%txt%"],
+        ["<<%dlg%", "%dlg%"],
+        ["<<%json%", "%json%"],
+        ["<<%html%", "%html%"],
+        ["<<%xml%", "%xml%"],
+        ["<<%code%", "%code%"]
+    ],
+    // symbols that are auto closed when typing
+    "autoClosingPairs": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["\"", "\""],
+        ["<<%str%", "%str%"],
+        ["<<%txt%", "%txt%"],
+        ["<<%dlg%", "%dlg%"],
+        ["<<%json%", "%json%"],
+        ["<<%html%", "%html%"],
+        ["<<%xml%", "%xml%"],
+        ["<<%code%", "%code%"]
+    ],
+    // symbols that that can be used to surround a selection
+    "surroundingPairs": [
+        ["{", "}"],
+        ["[", "]"],
+        ["(", ")"],
+        ["\"", "\""],
+        ["<<%str%", "%str%"],
+        ["<<%txt%", "%txt%"],
+        ["<<%dlg%", "%dlg%"],
+        ["<<%json%", "%json%"],
+        ["<<%html%", "%html%"],
+        ["<<%xml%", "%xml%"],
+        ["<<%code%", "%code%"]
+    ]
+}
