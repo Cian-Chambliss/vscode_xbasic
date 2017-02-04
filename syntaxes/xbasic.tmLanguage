@@ -32,7 +32,7 @@
 			<key>comment</key>
 			<string>Functions</string>
 			<key>match</key>
-			<string>(?i:\b((LEN|VAL|STRTRAN|STRITRAN)\s?#?)(?!\$)\b)</string>
+			<string>([a-zA-Z_][a-zA-Z\d_\.:]*)\(</string>
 			<key>name</key>
 			<string>support.function.basic.xbasic</string>
 		</dict>
@@ -41,6 +41,14 @@
 			<string>Control Structures</string>
 			<key>match</key>
 			<string>(?i:(((END(\s)?)?(FUNCTION|IF|SELECT|WITH|WHILE))|(GOTO))|(CASE|DIM|REDIM|AS|ELSE|END DEF|EXIT FOR|FOR|NEXT|ON|ON ERROR GOTO|ON ERROR RESUME|SELECT|DEFINE CLASS|CONTINUE|THEN|WEND|WHILE|EXIT WHILE|LET|RESUME|RETURN|STOP|DECLARE|UNDECLARE|MACRO))</string>
+			<key>name</key>
+			<string>keyword.control.xbasic</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Control Structures</string>
+			<key>match</key>
+			<string>(?i:EXIT(\s)(FUNCTION|WHILE|FOR))</string>
 			<key>name</key>
 			<string>keyword.control.xbasic</string>
 		</dict>
