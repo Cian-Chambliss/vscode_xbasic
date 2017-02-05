@@ -10,6 +10,10 @@
     "categories": [
         "Languages"
     ],
+    "activationEvents": [
+      "onLanguage:xbasic"
+    ],
+    "main": "./client/extension",    
     "contributes": {
         "languages": [{
             "id": "xbasic",

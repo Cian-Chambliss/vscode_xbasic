@@ -1,0 +1,18 @@
+{
+  "name": "xbasic-linter-server",
+  "description": "Example implementation of a language server in node.",
+  "version": "0.0.1",
+  "author": "Microsoft Corporation",
+  "license": "MIT",
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {
+    "vscode-languageserver": "^3.0.4",
+    "xbasic-linter" : "*"
+  },
+  "scripts": {
+    "compile": "installServerIntoExtension ../client ./package.json ./tsconfig.json && tsc -p .",
+    "watch": "installServerIntoExtension ../client ./package.json ./tsconfig.json && tsc --watch -p ."
+  }
+}
