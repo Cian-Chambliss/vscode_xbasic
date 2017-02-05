@@ -71,6 +71,8 @@ connection.onDidChangeWatchedFiles((change) => {
     // Monitored files have change in VSCode
     connection.console.log('We received an file change event');
 });
+let t;
+/*
 // This handler provides the initial list of the completion items.
 connection.onCompletion((textDocumentPosition) => {
     // The pass parameter contains the position of the text document in 
@@ -102,8 +104,6 @@ connection.onCompletionResolve((item) => {
     }
     return item;
 });
-let t;
-/*
 connection.onDidOpenTextDocument((params) => {
     // A text document got opened in VSCode.
     // params.textDocument.uri uniquely identifies the document. For documents store on disk this is a file URI.
