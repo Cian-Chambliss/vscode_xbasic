@@ -4,7 +4,7 @@ Alpha Anywhere Xbasic Scripting Language Code Colorization and Lint support.
 
 ## Features
 
-Handle .a5udf,.a5scr, and .a5class XBasic Source file types.
+Handle .a5udf,.a5scr, .a5class, .xbasic , .a5xbm,  .a5xbclass, .a5xbfl and .a5w XBasic Source file types.
 
 ## Known Issues
 
@@ -13,6 +13,10 @@ Code completion not yet implemented, The linter only handles syntax errors at th
 ## Release Notes
 
 Users appreciate release notes as you update your extension.
+
+### 0.0.2
+
+Added more supported extensions.
 
 ### 0.0.1
 

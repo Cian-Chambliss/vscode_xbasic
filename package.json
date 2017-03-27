@@ -2,7 +2,7 @@
     "name": "xbasic",
     "displayName": "Xbasic Language",
     "description": "Alpha Anywhere Xbasic",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "AlphaAnywhere",
     "engines": {
         "vscode": "^1.5.0"
@@ -18,7 +18,7 @@
         "languages": [{
             "id": "xbasic",
             "aliases": ["Alpha Anywhere XBASIC", "xbasic"],
-            "extensions": [".a5udf",".a5scr",".a5class"],
+            "extensions": [".a5udf",".a5scr",".a5class",".xbasic",".a5xbm",".a5xbclass",".a5xbfl",".a5w"],
             "configuration": "./language-configuration.json"
         }],
         "grammars": [{
@@ -27,6 +27,13 @@
             "path": "./syntaxes/xbasic.tmLanguage"
         }]
     },
+    "badges": [
+        {
+            "url": "https://www.alphasoftware.com/documentation/pages/images/alphaXbasicBadge.png",
+            "href": "https://www.alphasoftware.com/documentation/pages/images/alphaXbasicBadge.png",
+            "description": "Alpha Anywhere Xbasic"
+        }
+    ],    
     "repository" :
     { "type" : "git"
     , "url" : "https://github.com/Cian-Chambliss/vscode_xbasic.git"
