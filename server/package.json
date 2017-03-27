@@ -1,7 +1,7 @@
 {
   "name": "xbasic-linter-server",
   "description": "Example implementation of a language server in node.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Microsoft Corporation",
   "license": "MIT",
   "engines": {
