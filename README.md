@@ -14,6 +14,10 @@ Code completion not yet implemented, The linter only handles syntax errors at th
 
 Users appreciate release notes as you update your extension.
 
+### 0.0.3
+
+Xbasic Syntax checker has been updated to honor extra .xbasic class definition keywords.
+
 ### 0.0.2
 
 Added more supported extensions.

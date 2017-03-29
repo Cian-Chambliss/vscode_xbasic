@@ -48,10 +48,26 @@
 			<key>comment</key>
 			<string>Control Structures</string>
 			<key>match</key>
-			<string>(?i:(((END(\s)?)?(FUNCTION|IF|SELECT|WITH|WHILE|CLASS|ENUM))|(GOTO))|(CASE|DIM|REDIM|AS|ELSE|END DEF|EXIT FOR|FOR|NEXT|ON|ON ERROR GOTO|ON ERROR RESUME|SELECT|DEFINE CLASS|CONTINUE|THEN|WEND|WHILE|EXIT WHILE|LET|RESUME|RETURN|STOP|DECLARE|UNDECLARE|MACRO|ENUM))</string>
+			<string>^[ \t]*(?i:(((END(\s)?)?(FUNCTION|IF|SELECT|WITH|WHILE|CLASS|ENUM))|(GOTO))|(CASE|DIM|REDIM|ELSE|END DEF|EXIT FOR|FOR|NEXT|ON|ON ERROR GOTO|ON ERROR RESUME|SELECT|DEFINE CLASS|CONTINUE|WEND|WHILE|EXIT WHILE|LET|RESUME|RETURN|STOP|DECLARE|UNDECLARE|MACRO|ENUM))</string>
 			<key>name</key>
 			<string>keyword.control.xbasic</string>
 		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Control Structures</string>
+			<key>match</key>
+			<string>(?i:(THEN|AS))</string>
+			<key>name</key>
+			<string>keyword.control.xbasic</string>
+		</dict>
+		<dict>
+			<key>comment</key>
+			<string>Control Structures</string>
+			<key>match</key>
+			<string>^[ \t]*(?i:(IMPLEMENTATION|NAMESPACE))[ \t]</string>
+			<key>name</key>
+			<string>keyword.control.xbasic</string>
+		</dict>			
 		<dict>
 			<key>comment</key>
 			<string>Control Structures</string>
