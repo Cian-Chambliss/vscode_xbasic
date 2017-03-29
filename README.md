@@ -12,7 +12,9 @@ Code completion not yet implemented, The linter only handles syntax errors at th
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.4
+
+Support for helpetext keyword in xbasic class definition + support for method attributes (fixed false positives in xbasic linter).
 
 ### 0.0.3
 
