@@ -12,6 +12,10 @@ Code completion not yet implemented, The linter only handles syntax errors at th
 
 ## Release Notes
 
+### 0.0.5
+
+Support byref and unsorted keywords.
+
 ### 0.0.4
 
 Support for helpetext keyword in xbasic class definition + support for method attributes (fixed false positives in xbasic linter).
