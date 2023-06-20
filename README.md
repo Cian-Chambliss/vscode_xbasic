@@ -12,6 +12,9 @@ Code completion not yet implemented, The linter only handles syntax errors at th
 
 ## Release Notes
 
+### 0.0.6
+Fixed sporadic errors related to use of toLowerCase with non strings.
+
 ### 0.0.5
 
 Support byref and unsorted keywords.
