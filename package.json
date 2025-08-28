@@ -1,128 +1,161 @@
 {
-    "name": "xbasic",
-    "displayName": "Xbasic Language",
-    "description": "Alpha Anywhere Xbasic",
-    "icon": "images/alphaXbasicBadge.png",
-    "version": "0.0.7",
-    "publisher": "AlphaAnywhere",
-    "engines": {
-        "vscode": "^1.102.0"
-    },
-    "categories": [
-        "Languages",
-        "Debuggers"
-    ],
-    "activationEvents": [
-      "onLanguage:xbasic",
-      "onCommand:xbasic.startDebugging"
-    ],
-    "main": "./client/extension",    
-    "contributes": {
-        "languages": [{
-            "id": "xbasic",
-            "aliases": ["Alpha Anywhere XBASIC", "xbasic"],
-            "extensions": [".a5udf",".a5scr",".a5class",".xbasic",".a5xbm",".a5xbclass",".a5xbfl",".a5w"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "xbasic",
-            "scopeName": "source.xbasic",
-            "path": "./syntaxes/xbasic.tmLanguage"
-        }]
-    },
-    "configuration": {
-      "title": "Xbasic Language",
-      "properties": {
-        "xbasic.debugPort": {
-          "type": "number",
-          "default": 4711,
-          "description": "Port for DAP debugging"
-        }
-      }
-    },
-    "breakpoints": [
+  "name": "xbasic",
+  "displayName": "Xbasic Language",
+  "description": "Alpha Anywhere Xbasic",
+  "icon": "images/alphaXbasicBadge.png",
+  "version": "0.0.13",
+  "publisher": "AlphaAnywhere",
+  "engines": {
+    "vscode": "^1.5.0"
+  },
+  "categories": [
+    "Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:xbasic"
+  ],
+  "main": "./client/extension",
+  "contributes": {
+    "languages": [
       {
-        "language": "xbasic"
+        "id": "xbasic",
+        "aliases": [
+          "Alpha Anywhere XBASIC",
+          "xbasic"
+        ],
+        "extensions": [
+          ".a5udf",
+          ".a5scr",
+          ".a5class",
+          ".xbasic",
+          ".a5xbm",
+          ".a5xbclass",
+          ".a5xbfl",
+          ".a5w"
+        ],
+        "configuration": "./language-configuration.json"
       }
     ],
-    "debuggers": [
+    "grammars": [
       {
-        "type": "xbasic",
-        "languages": ["xbasic"],
-        "label": "Xbasic Debugger",
-        "runtimeArgs": [],
-        "configurationAttributes": {
-          "launch": {
-            "properties": {
-              "program": {
-                "type": "string",
-                "description": "Path to the Xbasic program to debug"
-              },
-              "programPath": {
-                "type": "string",
-                "description": "Path to Xbasic file"
-              },
-              "args": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                },
-                "description": "Arguments to pass to the program"
-              },
-              "cwd": {
-                "type": "string",
-                "description": "Working directory for the program"
-              },
-              "trace": {
-                "type": "string",
-                "enum": ["off", "messages", "verbose"],
-                "default": "off",
-                "description": "DAP trace level: off, messages, or verbose"
-              },
-              "stopOnEntry": {
-                "type": "boolean",
-                "default": false,
-                "description": "Whether to stop on the first line of the program"
-              }
+        "language": "xbasic",
+        "scopeName": "source.xbasic",
+        "path": "./syntaxes/xbasic.tmLanguage"
+      }
+    ]
+  },
+  "configuration": {
+    "title": "Xbasic Language",
+    "properties": {
+      "xbasic.debugPort": {
+        "type": "number",
+        "default": 4711,
+        "description": "Port for DAP debugging"
+      }
+    }
+  },
+  "breakpoints": [
+    {
+      "language": "xbasic"
+    }
+  ],
+  "debuggers": [
+    {
+      "type": "xbasic",
+      "languages": [
+        "xbasic"
+      ],
+      "label": "Xbasic Debugger",
+      "runtimeArgs": [],
+      "configurationAttributes": {
+        "launch": {
+          "properties": {
+            "program": {
+              "type": "string",
+              "description": "Path to the Xbasic program to debug"
             },
-            "required": ["program"]
-          }
-        },
-        "initialConfigurations": [
-          {
-            "name": "Debug Xbasic Program",
-            "type": "xbasic",
-            "request": "launch",
-            "program": "${file}",
-            "cwd": "${workspaceFolder}"
-          }
-        ]
-      }
-    ],
-    "commands": [
-      {
-        "command": "xbasic.startDebugging",
-        "title": "Start Xbasic Debugging",
-        "category": "basic"
-      }
-    ],
-    "menus": {
-      "commandPalette": [
+            "programPath": {
+              "type": "string",
+              "description": "Path to Xbasic file"
+            },
+            "args": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Arguments to pass to the program"
+            },
+            "cwd": {
+              "type": "string",
+              "description": "Working directory for the program"
+            },
+            "trace": {
+              "type": "string",
+              "enum": [
+                "off",
+                "messages",
+                "verbose"
+              ],
+              "default": "off",
+              "description": "DAP trace level: off, messages, or verbose"
+            },
+            "stopOnEntry": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to stop on the first line of the program"
+            }
+          },
+          "required": [
+            "program"
+          ]
+        }
+      },
+      "initialConfigurations": [
         {
-          "command": "xbasic.startDebugging",
-          "when": "resourceExtname == .a5scr || resourceExtname == .a5w"
+          "name": "Debug Xbasic Program",
+          "type": "xbasic",
+          "request": "launch",
+          "program": "${file}",
+          "cwd": "${workspaceFolder}"
         }
       ]
-    },
-    "badges": [
-        {
-            "url": "https://www.alphasoftware.com/documentation/pages/images/alphaXbasicBadge.png",
-            "href": "https://www.alphasoftware.com/documentation/pages/images/alphaXbasicBadge.png",
-            "description": "Alpha Anywhere Xbasic"
-        }
-    ],    
-    "repository" :
-    { "type" : "git"
-    , "url" : "https://github.com/Cian-Chambliss/vscode_xbasic.git"
-    }    
+    }
+  ],
+  "commands": [
+    {
+      "command": "xbasic.startDebugging",
+      "title": "Start Xbasic Debugging",
+      "category": "basic"
+    }
+  ],
+  "menus": {
+    "commandPalette": [
+      {
+        "command": "xbasic.startDebugging",
+        "when": "resourceExtname == .a5scr || resourceExtname == .a5w"
+      }
+    ]
+  },
+  "badges": [
+    {
+      "url": "https://www.alphasoftware.com/documentation/pages/images/alphaXbasicBadge.png",
+      "href": "https://www.alphasoftware.com/documentation/pages/images/alphaXbasicBadge.png",
+      "description": "Alpha Anywhere Xbasic"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Cian-Chambliss/vscode_xbasic.git"
+  },
+  "__metadata": {
+    "id": "ec9e38e0-2dad-44ff-b15b-2df296a8c569",
+    "publisherId": "7f91ac98-cacd-4c66-b81f-920d953ce948",
+    "publisherDisplayName": "Alpha Anywhere",
+    "targetPlatform": "undefined",
+    "updated": true,
+    "isPreReleaseVersion": false,
+    "installedTimestamp": 1688046498796,
+    "preRelease": false,
+    "isApplicationScoped": false
+  }
 }

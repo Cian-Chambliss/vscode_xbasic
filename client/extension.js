@@ -6,6 +6,8 @@
 const path = require("path");
 const vscode_1 = require("vscode");
 const vscode_languageclient_1 = require("vscode-languageclient");
+const  xb = require("xbasic-symbols");
+
 function activate(context) {
     // The server is implemented in node
     let serverModule = context.asAbsolutePath(path.join('server', 'server.js'));
@@ -33,8 +35,63 @@ function activate(context) {
     // Push the disposable to the context's subscriptions so that the 
     // client can be deactivated on extension deactivation
     context.subscriptions.push(disposable);
+    
+    var providerComplete = vscode_1.languages.registerCompletionItemProvider('xbasic', {                
+        provideCompletionItems: function (document, position, token, context) {
+            // find out if we are completing a property in the 'dependencies' object.
+            var textUntilPosition = document.getText(new vscode_1.Range(new vscode_1.Position(0,0),position));
+            var completion = xb.autoComplete({textUntilPosition : textUntilPosition 
+                , lineNumber : position.line+1
+                , fullLine : function() { 
+                    return document.lineAt(position.line).text;
+                } });
+            var suggest = [];
+            for( var i = 0 ; i < completion.length ; ++i ) {
+                var item = completion[i];
+                if( item.label && item.insertText ) {
+                    var kind = vscode_1.CompletionItemKind.Snippet;
+                    if( item.kind ) {
+                        if( item.kind == "function") {
+                            kind = vscode_1.CompletionItemKind.Function;
+                        } else if( item.kind == "method") {
+                            kind = vscode_1.CompletionItemKind.Method;
+                        }
+                    }
+                    var _ci =new vscode_1.CompletionItem(item.label, kind);
+                    if( item.documentation ) {
+                       _ci.documentation = item.documentation;
+                    }
+                    if( item.insertText ) {
+                        _ci.insertText = item.insertText;
+                    }
+                    suggest.push(_ci);
+                }
+            }
+            return suggest;
+        }
+    },":",".","="," ","(",","," ");
+    context.subscriptions.push(providerComplete);
 
-    // Set up DAP
+    var providerHover = vscode_1.languages.registerHoverProvider('xbasic', {
+        provideHover(document, position, token) {
+            var textUntilPosition = document.getText(new vscode_1.Range(new vscode_1.Position(0,0),position));
+            //var textUntilPosition = document.lineAt(position.line).text.substr(0,position.character+2);
+            var help = xb.autoHelp({textUntilPosition : textUntilPosition 
+                , lineNumber : position.line+1
+                , fullLine : function() { 
+                    return document.lineAt(position.line).text;
+                } });
+             if( help ) {
+                if( help.prototype) {
+                    if( help.documentation)  
+                        return { contents :[help.prototype,help.documentation] };
+                    return { contents :[help.prototype] };
+                }
+            }
+        }
+    });
+    context.subscriptions.push(providerHover);
+
     const factory = new XBasicDebugAdapterDescriptorFactory(debugPort);
     context.subscriptions.push(vscode.debug.registerDebugAdapterDescriptorFactory('xbasic', factory));
     // Register commands
@@ -58,7 +115,6 @@ function activate(context) {
         }
     });
     context.subscriptions.push(disposable2);
-
 }
 exports.activate = activate;
 class XBasicDebugAdapterDescriptorFactory {

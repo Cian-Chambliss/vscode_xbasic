@@ -12,6 +12,24 @@ Code completion not yet implemented, The linter only handles syntax errors at th
 
 ## Release Notes
 
+### 0.0.12
+Support for completion and help for legacy singleton objects (file/a5 etc).
+
+### 0.0.11
+Show autohelp for enumerations (after an '=').
+
+### 0.0.10
+Show autohelp for instance methods. 
+
+### 0.0.9
+Show autohelp for functions .
+
+### 0.0.8
+Autocomplete on variables based on type.
+
+### 0.0.7
+Autocomplete on namespaces
+
 ### 0.0.6
 Fixed sporadic errors related to use of toLowerCase with non strings.
 
