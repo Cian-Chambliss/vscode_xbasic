@@ -9,12 +9,13 @@
     "vscode": "^1.5.0"
   },
   "categories": [
-    "Languages"
+    "Programming Languages",
+    "Debuggers"
   ],
   "activationEvents": [
     "onLanguage:xbasic"
   ],
-  "main": "./client/extension",
+  "main": "./client/extension.js",
   "contributes": {
     "languages": [
       {
@@ -66,7 +67,6 @@
         "xbasic"
       ],
       "label": "Xbasic Debugger",
-      "runtimeArgs": [],
       "configurationAttributes": {
         "launch": {
           "properties": {

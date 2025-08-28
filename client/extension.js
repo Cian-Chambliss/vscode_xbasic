@@ -3,16 +3,48 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 'use strict';
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+console.log('Starting XBASIC extension');
+
+const vscode = __importStar(require("vscode"));
 const path = require("path");
 const vscode_1 = require("vscode");
 const vscode_languageclient_1 = require("vscode-languageclient");
 const  xb = require("xbasic-symbols");
 
+
 function activate(context) {
     // The server is implemented in node
+    const config = vscode.workspace.getConfiguration('xbasic');
     let serverModule = context.asAbsolutePath(path.join('server', 'server.js'));
     // The debug options for the server
     let debugOptions = { execArgv: ["--nolazy", "--debug=6009"] };
+    const debugPort = config.get('debugPort', 4711);
+
+    console.log(`Debug port: ${debugPort}`);
+
     // If the extension is launched in debug mode then the debug server options are used
     // Otherwise the run options are used
     let serverOptions = {
@@ -102,7 +134,7 @@ function activate(context) {
             editor.document.fileName.endsWith('.a5scr') ||
             editor.document.fileName.endsWith('.a5w'))) {
             vscode.debug.startDebugging((_a = vscode.workspace.workspaceFolders) === null || _a === void 0 ? void 0 : _a[0], {
-                name: 'Debug BASIC Program',
+                name: 'Debug XBASIC Program',
                 type: 'xbasic',
                 request: 'launch',
                 program: editor.document.fileName,
@@ -111,7 +143,7 @@ function activate(context) {
             });
         }
         else {
-            vscode.window.showErrorMessage('No BASIC file is currently open');
+            vscode.window.showErrorMessage('No XBASIC file is currently open');
         }
     });
     context.subscriptions.push(disposable2);
