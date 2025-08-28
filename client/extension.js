@@ -33,6 +33,41 @@ function activate(context) {
     // Push the disposable to the context's subscriptions so that the 
     // client can be deactivated on extension deactivation
     context.subscriptions.push(disposable);
+
+    // Set up DAP
+    const factory = new XBasicDebugAdapterDescriptorFactory(debugPort);
+    context.subscriptions.push(vscode.debug.registerDebugAdapterDescriptorFactory('xbasic', factory));
+    // Register commands
+    let disposable2 = vscode.commands.registerCommand('xbasic.startDebugging', () => {
+        var _a, _b, _c;
+        const editor = vscode.window.activeTextEditor;
+        if (editor && (editor.document.languageId === 'xbasic' ||
+            editor.document.fileName.endsWith('.a5scr') ||
+            editor.document.fileName.endsWith('.a5w'))) {
+            vscode.debug.startDebugging((_a = vscode.workspace.workspaceFolders) === null || _a === void 0 ? void 0 : _a[0], {
+                name: 'Debug BASIC Program',
+                type: 'xbasic',
+                request: 'launch',
+                program: editor.document.fileName,
+                cwd: ((_c = (_b = vscode.workspace.workspaceFolders) === null || _b === void 0 ? void 0 : _b[0]) === null || _c === void 0 ? void 0 : _c.uri.fsPath) || '',
+                trace: 'verbose' // <-- Add this line for trace support
+            });
+        }
+        else {
+            vscode.window.showErrorMessage('No BASIC file is currently open');
+        }
+    });
+    context.subscriptions.push(disposable2);
+
 }
 exports.activate = activate;
-//# sourceMappingURL=extension.js.map
+class XBasicDebugAdapterDescriptorFactory {
+    constructor(debugPort) {
+        this.debugPort = debugPort;
+    }
+    createDebugAdapterDescriptor(session, executable) {
+        // For now, we'll use a server-based approach
+        // In a real implementation, you might want to start the interpreter as a process
+        return new vscode_1.DebugAdapterServer(this.debugPort);
+    }
+}

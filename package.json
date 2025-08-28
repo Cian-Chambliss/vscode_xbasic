@@ -3,16 +3,18 @@
     "displayName": "Xbasic Language",
     "description": "Alpha Anywhere Xbasic",
     "icon": "images/alphaXbasicBadge.png",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "publisher": "AlphaAnywhere",
     "engines": {
-        "vscode": "^1.5.0"
+        "vscode": "^1.102.0"
     },
     "categories": [
-        "Languages"
+        "Languages",
+        "Debuggers"
     ],
     "activationEvents": [
-      "onLanguage:xbasic"
+      "onLanguage:xbasic",
+      "onCommand:xbasic.startDebugging"
     ],
     "main": "./client/extension",    
     "contributes": {
@@ -27,6 +29,90 @@
             "scopeName": "source.xbasic",
             "path": "./syntaxes/xbasic.tmLanguage"
         }]
+    },
+    "configuration": {
+      "title": "Xbasic Language",
+      "properties": {
+        "xbasic.debugPort": {
+          "type": "number",
+          "default": 4711,
+          "description": "Port for DAP debugging"
+        }
+      }
+    },
+    "breakpoints": [
+      {
+        "language": "xbasic"
+      }
+    ],
+    "debuggers": [
+      {
+        "type": "xbasic",
+        "languages": ["xbasic"],
+        "label": "Xbasic Debugger",
+        "runtimeArgs": [],
+        "configurationAttributes": {
+          "launch": {
+            "properties": {
+              "program": {
+                "type": "string",
+                "description": "Path to the Xbasic program to debug"
+              },
+              "programPath": {
+                "type": "string",
+                "description": "Path to Xbasic file"
+              },
+              "args": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Arguments to pass to the program"
+              },
+              "cwd": {
+                "type": "string",
+                "description": "Working directory for the program"
+              },
+              "trace": {
+                "type": "string",
+                "enum": ["off", "messages", "verbose"],
+                "default": "off",
+                "description": "DAP trace level: off, messages, or verbose"
+              },
+              "stopOnEntry": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether to stop on the first line of the program"
+              }
+            },
+            "required": ["program"]
+          }
+        },
+        "initialConfigurations": [
+          {
+            "name": "Debug Xbasic Program",
+            "type": "xbasic",
+            "request": "launch",
+            "program": "${file}",
+            "cwd": "${workspaceFolder}"
+          }
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "command": "xbasic.startDebugging",
+        "title": "Start Xbasic Debugging",
+        "category": "basic"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "xbasic.startDebugging",
+          "when": "resourceExtname == .a5scr || resourceExtname == .a5w"
+        }
+      ]
     },
     "badges": [
         {
